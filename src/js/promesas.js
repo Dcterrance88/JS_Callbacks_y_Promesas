@@ -13,16 +13,31 @@ const heroes = {
     }
 }
 
-export const buscarHeroe = (id) =>{
+export const buscarHeroe = (id) => {
 
     const heroe = heroes[id];
 
-    return new Promise( (resolve, reject) => {
-        if ( heroe) {
+    return new Promise((resolve, reject) => {
+        if (heroe) {
             resolve(heroe);
-        }else{
-            reject(`No existe un héroe con el id ${ id }`);
+        } else {
+            reject(`No existe un héroe con el id ${id}`);
         }
     });
+}
 
+const promesaLenta = new Promise( (resolve, reject) => {
+    setTimeout( () => resolve('Promesa lenta'),2000);
+});
+
+const promesaMedia = new Promise( (resolve, reject) => {
+    setTimeout( () => resolve('Promesa Media'),1500);
+});
+
+const promesaRapida = new Promise( (resolve, reject) => {
+    setTimeout( () => reject ('Promesa Rápida'),1000);
+});
+
+export {
+    promesaLenta, promesaMedia, promesaRapida
 }
