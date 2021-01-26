@@ -13,6 +13,7 @@ const heroes = {
     }
 }
 
+//forma sincrona
 export const buscarHeroe = (id) => {
 
     const heroe = heroes[id];
@@ -25,17 +26,28 @@ export const buscarHeroe = (id) => {
         }
     });
 }
+//forma asincrona
+export const buscarHeroeAsync = async (id) => {
 
-const promesaLenta = new Promise( (resolve, reject) => {
-    setTimeout( () => resolve('Promesa lenta'),2000);
+    const heroe = heroes[id];
+
+    if (heroe) {
+        return heroe;
+    } else {
+        throw `No existe un héroe con el id ${id}`;
+    }
+}
+
+const promesaLenta = new Promise((resolve, reject) => {
+    setTimeout(() => resolve('Promesa lenta'), 2000);
 });
 
-const promesaMedia = new Promise( (resolve, reject) => {
-    setTimeout( () => resolve('Promesa Media'),1500);
+const promesaMedia = new Promise((resolve, reject) => {
+    setTimeout(() => resolve('Promesa Media'), 1500);
 });
 
-const promesaRapida = new Promise( (resolve, reject) => {
-    setTimeout( () => reject ('Promesa Rápida'),1000);
+const promesaRapida = new Promise((resolve, reject) => {
+    setTimeout(() => resolve('Promesa Rápida'), 1000);
 });
 
 export {
